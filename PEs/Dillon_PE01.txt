@@ -1,0 +1,223 @@
+mysql> source C:\MySQL\PEs\Jacob_Dillon_PE01.sql
+--------------
+select Curdate()
+--------------
+
++------------+
+| Curdate()  |
++------------+
+| 2024-08-28 |
++------------+
+1 row in set (0.00 sec)
+
+--------------
+show variables like "%VERSION%"
+--------------
+
++-----------------------------+------------------------------+
+| Variable_name               | Value                        |
++-----------------------------+------------------------------+
+| admin_tls_version           | TLSv1.2,TLSv1.3              |
+| explain_json_format_version | 1                            |
+| immediate_server_version    | 999999                       |
+| innodb_version              | 9.0.1                        |
+| original_server_version     | 999999                       |
+| protocol_version            | 10                           |
+| replica_type_conversions    |                              |
+| slave_type_conversions      |                              |
+| tls_version                 | TLSv1.2,TLSv1.3              |
+| version                     | 9.0.1                        |
+| version_comment             | MySQL Community Server - GPL |
+| version_compile_machine     | x86_64                       |
+| version_compile_os          | Win64                        |
+| version_compile_zlib        | 1.2.13                       |
++-----------------------------+------------------------------+
+14 rows in set (0.00 sec)
+
+--------------
+select date("2024-08-26") as "Start of this Semester"
+--------------
+
++------------------------+
+| Start of this Semester |
++------------------------+
+| 2024-08-26             |
++------------------------+
+1 row in set (0.00 sec)
+
+--------------
+select date_add(Curdate(),Interval 14 week) as "End of the Semester"
+--------------
+
++---------------------+
+| End of the Semester |
++---------------------+
+| 2024-12-04          |
++---------------------+
+1 row in set (0.00 sec)
+
+--------------
+show variables like "datadir"
+--------------
+
++---------------+---------------------------------+
+| Variable_name | Value                           |
++---------------+---------------------------------+
+| datadir       | C:\MySQL\MySQL Server 9.0\Data\ |
++---------------+---------------------------------+
+1 row in set (0.00 sec)
+
+--------------
+show Databases
+--------------
+
++--------------------+
+| Database           |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| studentdb          |
+| sys                |
++--------------------+
+5 rows in set (0.00 sec)
+
+Database changed
+--------------
+show tables
+--------------
+
++---------------------+
+| Tables_in_studentdb |
++---------------------+
+| student             |
++---------------------+
+1 row in set (0.00 sec)
+
+--------------
+select * from student
+--------------
+
++-----------+-----------+-----------+-------+--------------+------+
+| studentID | lastName  | firstName | class | departmentID | gpa  |
++-----------+-----------+-----------+-------+--------------+------+
+| 00001     | Habermas  | Karen     | JR    | 4002         | 3.75 |
+| 12345     | Bettinger | Matthew   | JR    | 4002         | 3.33 |
+| 12355     | Collins   | Andrew    | FR    | 4002         | 3.80 |
+| 12365     | Kang      | Jay       | GR    | 4003         | 3.99 |
+| 12375     | Habermas  | Jim       | GR    | 4003         | 3.66 |
+| 22222     | Holdan    | Edward    | SR    | 4002         | 3.50 |
+| 33343     | Zilora    | Stephen   | GR    | 4002         | 4.00 |
++-----------+-----------+-----------+-------+--------------+------+
+7 rows in set (0.00 sec)
+
+--------------
+insert into student values("00002", "Dillon", "Jacob", "GR", "4002", "4.0")
+--------------
+
+Query OK, 1 row affected (0.00 sec)
+
+--------------
+insert into student values("00012", "West", "James", "GR", "4002", "2.7"),
+			("00123", "Smith", "Anthony", "GR", "4002", "3.5")
+--------------
+
+Query OK, 2 rows affected (0.00 sec)
+Records: 2  Duplicates: 0  Warnings: 0
+
+--------------
+Select * from student
+--------------
+
++-----------+-----------+-----------+-------+--------------+------+
+| studentID | lastName  | firstName | class | departmentID | gpa  |
++-----------+-----------+-----------+-------+--------------+------+
+| 00001     | Habermas  | Karen     | JR    | 4002         | 3.75 |
+| 00002     | Dillon    | Jacob     | GR    | 4002         | 4.00 |
+| 00012     | West      | James     | GR    | 4002         | 2.70 |
+| 00123     | Smith     | Anthony   | GR    | 4002         | 3.50 |
+| 12345     | Bettinger | Matthew   | JR    | 4002         | 3.33 |
+| 12355     | Collins   | Andrew    | FR    | 4002         | 3.80 |
+| 12365     | Kang      | Jay       | GR    | 4003         | 3.99 |
+| 12375     | Habermas  | Jim       | GR    | 4003         | 3.66 |
+| 22222     | Holdan    | Edward    | SR    | 4002         | 3.50 |
+| 33343     | Zilora    | Stephen   | GR    | 4002         | 4.00 |
++-----------+-----------+-----------+-------+--------------+------+
+10 rows in set (0.00 sec)
+
+--------------
+select * from student
+--------------
+
+*************************** 1. row ***************************
+   studentID: 00001
+    lastName: Habermas
+   firstName: Karen
+       class: JR
+departmentID: 4002
+         gpa: 3.75
+*************************** 2. row ***************************
+   studentID: 00002
+    lastName: Dillon
+   firstName: Jacob
+       class: GR
+departmentID: 4002
+         gpa: 4.00
+*************************** 3. row ***************************
+   studentID: 00012
+    lastName: West
+   firstName: James
+       class: GR
+departmentID: 4002
+         gpa: 2.70
+*************************** 4. row ***************************
+   studentID: 00123
+    lastName: Smith
+   firstName: Anthony
+       class: GR
+departmentID: 4002
+         gpa: 3.50
+*************************** 5. row ***************************
+   studentID: 12345
+    lastName: Bettinger
+   firstName: Matthew
+       class: JR
+departmentID: 4002
+         gpa: 3.33
+*************************** 6. row ***************************
+   studentID: 12355
+    lastName: Collins
+   firstName: Andrew
+       class: FR
+departmentID: 4002
+         gpa: 3.80
+*************************** 7. row ***************************
+   studentID: 12365
+    lastName: Kang
+   firstName: Jay
+       class: GR
+departmentID: 4003
+         gpa: 3.99
+*************************** 8. row ***************************
+   studentID: 12375
+    lastName: Habermas
+   firstName: Jim
+       class: GR
+departmentID: 4003
+         gpa: 3.66
+*************************** 9. row ***************************
+   studentID: 22222
+    lastName: Holdan
+   firstName: Edward
+       class: SR
+departmentID: 4002
+         gpa: 3.50
+*************************** 10. row ***************************
+   studentID: 33343
+    lastName: Zilora
+   firstName: Stephen
+       class: GR
+departmentID: 4002
+         gpa: 4.00
+10 rows in set (0.00 sec)
+
